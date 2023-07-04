@@ -7,9 +7,9 @@ public static class Help
         Console.WriteLine(@"Basic help:
 Run the application, run ado <command> <parameters> flags
 * In general, any command given will be used to find and call an Azure DevOps API method. (Exceptions below)
-* Parameters are specified as :name = value
+* Parameters are specified as name = value
 * Flags are specified as --flag
-* Any subcommands are specified as a bare word
+* Any subcommands are specified as a single word
 
 The following special commands are available:
 * list-areas: Lists available areas
@@ -21,21 +21,21 @@ The following special commands are available:
 * login <pat>: Set a PAT for the given organization and project
 
 The following flags are available:
--v or --verbose: Enable verbose logging (not yet implemented)
+-v or --verbose: Enable verbose logging
 -p or --pretty: Pretty-print the output
 -s or --silent: Suppress any output
 --what-if: Only applicable to API calls, instead of performing the call, the URL and body (if existing) will be printed
+--query=<query>: A jq-style query to filter the result
 
 The following parameters are available for all commands:
-:area=<area>: Indicate which area to search, only required if there's more than one command with the same name
-:method=<HTTP-verb>: Indicate which HTTP verb is expected, only required if there's more than one command with the same name
-:query=<query>: A jq-style query to filter the result
-:body=<body>: Data to be sent as request body (may also be piped through STDIN
+area=<area>: Indicate which area to search, only required if there's more than one command with the same name
+method=<HTTP-verb>: Indicate which HTTP verb is expected, only required if there's more than one command with the same name
+body=<body>: Data to be sent as request body (may also be piped through STDIN
 
 The following parameters are optional, and the tool will attempt to resolve them from the current repository's remote
-:organization=<organization>: Azure DevOps organization to use
-:project=<project>: Azure DevOps project to use
-:repository=<repository>: Azure DevOps repository
+organization=<organization>: Azure DevOps organization to use
+project=<project>: Azure DevOps project to use
+repository=<repository>: Azure DevOps repository
 ");
     }
 }
