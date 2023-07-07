@@ -94,7 +94,14 @@ public static class Invoke
             // Route parameters are always required, so throw if the user did not specify a value
             if (!args.TryGetParameter(parameter.Name, out var value))
             {
-                throw new($"Required path parameter '{parameter.Name}' missing");
+                if (parameter.Name == "repositoryId")
+                {
+                    value = args.GetParameter(WellKnownParameters.Repository);
+                }
+                else
+                {
+                    throw new($"Required path parameter '{parameter.Name}' missing");
+                }
             }
 
             route = route.Replace($"{{{parameter.Name}}}", value);
