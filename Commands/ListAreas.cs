@@ -1,6 +1,9 @@
+using Ado.Arguments;
+using Ado.Serialization;
+
 namespace Ado.Commands;
 
-public static class ListAreas
+internal static class ListAreas
 {
     public static void Execute(ArgReader args)
     {

@@ -1,7 +1,7 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Ado;
+namespace Ado.Serialization;
 
 internal class OperationsLookup
 {
@@ -85,84 +85,4 @@ internal class OperationsLookup
             }
         }
     }
-}
-
-internal class Operation
-{
-    public string Name { get; set; } = null!;
-
-    [JsonPropertyName("urlTemplate")]
-    public string UrlTemplate { get; set; } = null!;
-
-    [JsonPropertyName("verb")]
-    public string Verb { get; set; } = null!;
-
-    [JsonPropertyName("apiVersion")]
-    public string ApiVersion { get; set; } = null!;
-
-    [JsonPropertyName("description")]
-    public string Description { get; set; } = null!;
-
-    [JsonPropertyName("operationId")]
-    public string OperationId { get; set; } = null!;
-
-    [JsonPropertyName("parameters")]
-    public Parameters Parameters { get; set; } = new();
-
-    [JsonPropertyName("host")]
-    public string Host { get; set; } = null!;
-}
-
-public class Parameters
-{
-    [JsonPropertyName("path")]
-    public List<Parameter> Path { get; set; } = new();
-
-    [JsonPropertyName("query")]
-    public List<Parameter> Query { get; set; } = new();
-
-    [JsonPropertyName("header")]
-    public List<Parameter> Header { get; set; } = new();
-
-    [JsonPropertyName("body")]
-    public Parameter? Body { get; set; }
-}
-
-public class Parameter
-{
-    [JsonPropertyName("name")]
-    public string Name { get; set; } = null!;
-
-    [JsonPropertyName("description")]
-    public string Description { get; set; } = null!;
-
-    [JsonPropertyName("required")]
-    public bool Required { get; set; }
-
-    [JsonPropertyName("type")]
-    public string? Type { get; set; }
-
-    [JsonPropertyName("format")]
-    public string? Format { get; set; }
-
-    [JsonPropertyName("enum")]
-    public EnumData? EnumData { get; set; }
-}
-
-public class EnumData
-{
-    [JsonPropertyName("name")]
-    public string Name { get; set; } = null!;
-
-    [JsonPropertyName("values")]
-    public List<EnumValue> Values { get; set; } = new();
-}
-
-public class EnumValue
-{
-    [JsonPropertyName("value")]
-    public string Value { get; set; } = null!;
-
-    [JsonPropertyName("description")]
-    public string Description { get; set; } = null!;
 }

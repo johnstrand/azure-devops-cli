@@ -1,6 +1,9 @@
+using Ado.Arguments;
+using Ado.Serialization;
+
 namespace Ado.Commands;
 
-public static class SearchCommand
+internal static class SearchCommand
 {
     public static void Execute(ArgReader args)
     {

@@ -3,7 +3,7 @@ namespace Ado;
 /// <summary>
 /// Helper class for verbose logging
 /// </summary>
-public static class Log
+internal static class Log
 {
     private static bool verbose;
 

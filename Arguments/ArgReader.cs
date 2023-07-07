@@ -2,12 +2,12 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace Ado;
+namespace Ado.Arguments;
 
 /// <summary>
 /// Class to help with parsing command line arguments
 /// </summary>
-public sealed class ArgReader
+internal sealed class ArgReader
 {
     /// <summary>
     /// Arguments that have not yet been read
@@ -389,49 +389,4 @@ public sealed class ArgReader
     {
         return args.Dequeue();
     }
-}
-
-/// <summary>
-/// Represents a single argument
-/// </summary>
-/// <param name="Name">Name of the argument</param>
-/// <param name="Value">Value of the argument, will be an empty string in case of a command</param>
-/// <param name="Type">Argument type</param>
-public record Argument(string Name, string Value, ArgumentType Type)
-{
-    /// <summary>
-    /// True if this argument is a command
-    /// </summary>
-    public bool IsCommand => Type == ArgumentType.Command;
-
-    /// <summary>
-    /// True if this argument is a parameter
-    /// </summary>
-    public bool IsParameter => Type == ArgumentType.Parameter;
-
-    /// <summary>
-    /// True if this argument is a flag
-    /// </summary>
-    public bool IsFlag => Type == ArgumentType.Flag;
-}
-
-/// <summary>
-/// Type of argument
-/// </summary>
-public enum ArgumentType
-{
-    /// <summary>
-    /// Command
-    /// </summary>
-    Command,
-
-    /// <summary>
-    /// Parameter
-    /// </summary>
-    Parameter,
-
-    /// <summary>
-    /// Flag
-    /// </summary>
-    Flag
 }

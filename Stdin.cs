@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Ado;
 
-public static class Stdin
+internal static class Stdin
 {
     public static string Read()
     {

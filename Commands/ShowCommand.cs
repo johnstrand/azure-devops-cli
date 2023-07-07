@@ -1,6 +1,9 @@
+using Ado.Arguments;
+using Ado.Serialization;
+
 namespace Ado.Commands;
 
-public static class ShowCommand
+internal static class ShowCommand
 {
     private const char BottomLeftCornerThin = '\u2514';
     private const char BottomRightCornerThin = '\u2518';

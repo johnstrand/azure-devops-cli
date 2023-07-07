@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json.Nodes;
+using Ado.Arguments;
+using Ado.Serialization;
 
 namespace Ado.Commands;
 
-public static class Invoke
+internal static class Invoke
 {
     /// <summary>
     /// Attempts to resolve an API call based on the given arguments and executes it

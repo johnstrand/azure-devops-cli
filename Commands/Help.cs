@@ -1,6 +1,8 @@
+using Ado.Arguments;
+
 namespace Ado.Commands;
 
-public static class Help
+internal static class Help
 {
     public static void Execute(ArgReader _)
     {

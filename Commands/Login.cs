@@ -1,8 +1,9 @@
 using System.Text;
+using Ado.Arguments;
 
 namespace Ado.Commands;
 
-public static class Login
+internal static class Login
 {
     public static void Execute(ArgReader args)
     {

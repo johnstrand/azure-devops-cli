@@ -1,6 +1,6 @@
 ﻿namespace Ado;
 
-public class QueryBuilder
+internal class QueryBuilder
 {
     private readonly List<KeyValuePair<string, object>> queryParameters = new();
 
