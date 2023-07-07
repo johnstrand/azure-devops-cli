@@ -212,20 +212,19 @@ public static class Invoke
         // TODO: Rework this segment
         if (TryParse(content, out var parsed))
         {
-            var json = parsed.ToJsonString(new System.Text.Json.JsonSerializerOptions
+            if (query != null)
+            {
+                var queryResult = new JUST.JsonTransformer().Transform($"\"#valueof({query})\"", content);
+                parsed = JsonNode.Parse(queryResult);
+            }
+
+            var json = parsed?.ToJsonString(new System.Text.Json.JsonSerializerOptions
             {
                 WriteIndented = pretty,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
 
-            if (query != null)
-            {
-                Console.WriteLine(new JUST.JsonTransformer().Transform($"\"#valueof({query})\"", json));
-            }
-            else
-            {
-                Console.WriteLine(json);
-            }
+            Console.WriteLine(json ?? "null");
         }
         else
         {
