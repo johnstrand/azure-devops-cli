@@ -18,7 +18,7 @@
     <PackageTags>azure;devops</PackageTags>
     <PackageReleaseNotes>This is the first release of the tool, it is still a work in progress and there will be bugs</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.4</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="operations.json" CopyToOutputDirectory="Always" />

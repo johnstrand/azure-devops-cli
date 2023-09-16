@@ -29,4 +29,8 @@ $content.Project.PropertyGroup.Version = $nextVersion
 $content.Save((Resolve-Path .\Ado.csproj))
 
 Write-Host "New version: $nextVersion"
+
+git add .
+git commit -m "Update version to $nextVersion"
+
 dotnet pack -c Release
