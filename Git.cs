@@ -66,19 +66,39 @@ internal static class Git
     public static bool TryFindRemote([NotNullWhen(true)] out string[] remotes)
     {
         remotes = Array.Empty<string>();
-        if (!Repository.IsValid(Environment.CurrentDirectory))
+        var path = Environment.CurrentDirectory;
+
+        while (path != null)
+        {
+            Log.Verbose($"Attempting to find remote in {path}");
+
+            if (Repository.IsValid(path))
+            {
+                break;
+            }
+
+            Log.Verbose("LibGit2Sharp failed to find a valid repository");
+            path = Path.GetDirectoryName(path);
+
+            break;
+        }
+
+        if (path == null)
         {
             return false;
         }
 
-        var repo = new Repository(Environment.CurrentDirectory);
+        var repo = new Repository(path);
 
         if (!repo.Network.Remotes.Any())
         {
+            Log.Verbose("LibGit2Sharp failed to find any remotes");
             return false;
         }
 
         remotes = repo.Network.Remotes.Select(r => r.Url).ToArray();
+        Log.Verbose($"Found {remotes.Length} remote(s)");
+
         return true;
     }
 }
