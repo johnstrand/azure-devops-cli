@@ -1,37 +1,40 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <PackAsTool>true</PackAsTool>
-    <ToolCommandName>ado</ToolCommandName>
-    <PackageOutputPath>./nupkg</PackageOutputPath>
-    <PackageId>JST.AzureDevopsCli</PackageId>
-    <Description>A CLI application for interacting with Azure DevOps</Description>
-    <Title>Azure DevOps CLI</Title>
-    <Authors>John Strand</Authors>
-    <Company />
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/johnstrand/azure-devops-cli</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/johnstrand/azure-devops-cli</RepositoryUrl>
-    <PackageTags>azure;devops</PackageTags>
-    <PackageReleaseNotes>This is the first release of the tool, it is still a work in progress and there will be bugs</PackageReleaseNotes>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.0</Version>
-  </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="operations.json" CopyToOutputDirectory="Always" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="JUST.net" Version="4.3.0" />
-    <PackageReference Include="LibGit2Sharp" Version="0.27.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>ado</ToolCommandName>
+		<PackageOutputPath>./nupkg</PackageOutputPath>
+		<PackageId>JST.AzureDevopsCli</PackageId>
+		<Description>A CLI application for interacting with Azure DevOps</Description>
+		<Title>Azure DevOps CLI</Title>
+		<Authors>John Strand</Authors>
+		<Company />
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/johnstrand/azure-devops-cli</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/johnstrand/azure-devops-cli</RepositoryUrl>
+		<PackageTags>azure;devops</PackageTags>
+		<PackageReleaseNotes>This is the first release of the tool, it is still a work in progress and there will be bugs</PackageReleaseNotes>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Version>1.1.0</Version>
+	</PropertyGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="operations.json" CopyToOutputDirectory="Always" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="JUST.net" Version="4.3.0" />
+		<PackageReference Include="LibGit2Sharp" Version="0.27.2" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="readme.md">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="C:\dev\azure-devops-cli\.editorconfig" />
+	</ItemGroup>
 </Project>

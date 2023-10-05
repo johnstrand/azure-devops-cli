@@ -65,6 +65,11 @@ export type OpenAPI = {
       [method: string]: Operation;
     };
   };
+  "x-ms-paths": {
+    [path: string]: {
+      [method: string]: Operation;
+    };
+  };
   definitions: {
     [name: string]: Definition;
   };

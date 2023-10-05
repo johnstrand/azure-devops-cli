@@ -14,7 +14,7 @@ internal static class ListCommands
         foreach (var group in (area == null ? OperationsLookup.ListOperations() : OperationsLookup.ListOperations(area)).GroupBy(o => o.area, o => o.operation))
         {
             Console.WriteLine(group.Key);
-            foreach (var operation in group)
+            foreach (var operation in group.OrderBy(o => o.Name))
             {
                 Console.WriteLine($"\t{operation.Name}");
             }

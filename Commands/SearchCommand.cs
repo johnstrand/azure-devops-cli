@@ -14,7 +14,7 @@ internal static class SearchCommand
         foreach (var group in OperationsLookup.FindOperation(match, area).GroupBy(o => o.area, o => o.operation))
         {
             Console.WriteLine(group.Key);
-            foreach (var operation in group)
+            foreach (var operation in group.OrderBy(op => op.Name))
             {
                 Console.WriteLine($"\t{operation.Name} - {operation.Verb} {operation.UrlTemplate}");
             }

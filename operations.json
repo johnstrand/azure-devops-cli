@@ -11813,6 +11813,240 @@
           }
         }
       }
+    ],
+    "GetArtifact": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/build/builds/{buildId}/artifacts?artifactName={artifactName}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.5",
+        "description": "Gets a specific artifact for a build.",
+        "operationId": "Artifacts_Get Artifact",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "buildId",
+              "description": "The ID of the build.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "artifactName",
+              "description": "The name of the artifact.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/BuildArtifact"
+            }
+          }
+        }
+      }
+    ],
+    "GetFile": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/build/builds/{buildId}/artifacts?artifactName={artifactName}&fileId={fileId}&fileName={fileName}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.5",
+        "description": "Gets a file from the build.",
+        "operationId": "Artifacts_Get File",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "buildId",
+              "description": "The ID of the build.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "artifactName",
+              "description": "The name of the artifact.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "fileId",
+              "description": "The primary key for the file.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "fileName",
+              "description": "The name that the file will be set to.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "format": "Stream"
+            }
+          }
+        }
+      }
+    ],
+    "GetRetentionLeasesByUserId": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/build/retention/leases?userOwnerId={userOwnerId}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.2",
+        "description": "Returns any leases owned by the specified user, optionally scoped to a single pipeline definition and run.",
+        "operationId": "Leases_Get Retention Leases By User Id",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "userOwnerId",
+              "description": "The user id to search for.",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "name": "definitionId",
+              "description": "An optional parameter to limit the search to a specific pipeline definition.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "runId",
+              "description": "An optional parameter to limit the search to a single pipeline run. Requires definitionId.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RetentionLease"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetRetentionLeasesByOwnerId": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/build/retention/leases?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.2",
+        "description": "Returns any leases owned by the specified entity, optionally scoped to a single pipeline definition and run.",
+        "operationId": "Leases_Get Retention Leases By Owner Id",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "ownerId",
+              "description": "",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "definitionId",
+              "description": "An optional parameter to limit the search to a specific pipeline definition.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "runId",
+              "description": "An optional parameter to limit the search to a single pipeline run. Requires definitionId.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RetentionLease"
+              }
+            }
+          }
+        }
+      }
     ]
   },
   "core": {
@@ -17162,6 +17396,406 @@
           }
         }
       }
+    ],
+    "GetAgentPools": [
+      {
+        "urlTemplate": "/{organization}/_apis/distributedtask/pools?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get a list of agent pools.",
+        "operationId": "Pools_Get Agent Pools",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "poolName",
+              "description": "Filter by name",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "properties",
+              "description": "Filter by agent pool properties (comma-separated)",
+              "required": false,
+              "type": "string",
+              "format": "array (string)"
+            },
+            {
+              "name": "poolType",
+              "description": "Filter by pool type",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TaskAgentPoolType",
+                "values": [
+                  {
+                    "value": "automation",
+                    "description": "A typical pool of task agents"
+                  },
+                  {
+                    "value": "deployment",
+                    "description": "A deployment pool"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "actionFilter",
+              "description": "Filter by whether the calling user has use or manage permissions",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TaskAgentPoolActionFilter",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": ""
+                  },
+                  {
+                    "value": "manage",
+                    "description": ""
+                  },
+                  {
+                    "value": "use",
+                    "description": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TaskAgentPool"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetAgentQueuesByNames": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/distributedtask/queues?queueNames={queueNames}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get a list of agent queues by their names",
+        "operationId": "Queues_Get Agent Queues By Names",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "queueNames",
+              "description": "A comma-separated list of agent names to retrieve",
+              "required": true,
+              "type": "string",
+              "format": "array (string)"
+            },
+            {
+              "name": "actionFilter",
+              "description": "Filter by whether the calling user has use or manage permissions",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TaskAgentQueueActionFilter",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": ""
+                  },
+                  {
+                    "value": "manage",
+                    "description": ""
+                  },
+                  {
+                    "value": "use",
+                    "description": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TaskAgentQueue"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetAgentQueuesByIds": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/distributedtask/queues?queueIds={queueIds}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get a list of agent queues by their IDs",
+        "operationId": "Queues_Get Agent Queues By Ids",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "queueIds",
+              "description": "A comma-separated list of agent queue IDs to retrieve",
+              "required": true,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "actionFilter",
+              "description": "Filter by whether the calling user has use or manage permissions",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TaskAgentQueueActionFilter",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": ""
+                  },
+                  {
+                    "value": "manage",
+                    "description": ""
+                  },
+                  {
+                    "value": "use",
+                    "description": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TaskAgentQueue"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetAgentQueues": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/distributedtask/queues?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get a list of agent queues.",
+        "operationId": "Queues_Get Agent Queues",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "queueName",
+              "description": "Filter on the agent queue name",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "actionFilter",
+              "description": "Filter by whether the calling user has use or manage permissions",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TaskAgentQueueActionFilter",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": ""
+                  },
+                  {
+                    "value": "manage",
+                    "description": ""
+                  },
+                  {
+                    "value": "use",
+                    "description": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TaskAgentQueue"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetVariableGroups": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/distributedtask/variablegroups?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.2",
+        "description": "Get variable groups.",
+        "operationId": "Variablegroups_Get Variable Groups",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "groupName",
+              "description": "Name of variable group.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "actionFilter",
+              "description": "Action filter for the variable group. It specifies the action which can be performed on the variable groups.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "VariableGroupActionFilter",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": ""
+                  },
+                  {
+                    "value": "manage",
+                    "description": ""
+                  },
+                  {
+                    "value": "use",
+                    "description": ""
+                  }
+                ]
+              }
+            },
+            {
+              "name": "$top",
+              "description": "Number of variable groups to get.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "continuationToken",
+              "description": "Gets the variable groups after the continuation token provided.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "queryOrder",
+              "description": "Gets the results in the defined order. Default is 'IdDescending'.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "VariableGroupQueryOrder",
+                "values": [
+                  {
+                    "value": "idAscending",
+                    "description": "Order by id ascending."
+                  },
+                  {
+                    "value": "idDescending",
+                    "description": "Order by id descending."
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VariableGroup"
+              }
+            }
+          }
+        }
+      }
     ]
   },
   "extensionmanagement": {
@@ -17588,6 +18222,331 @@
             }
           ],
           "query": [
+            {
+              "name": "artifactScopeType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "artifactType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "artifactScopeId",
+              "description": "",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "includeExtendedDetails",
+              "description": "",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Favorite"
+            }
+          }
+        }
+      }
+    ],
+    "CreateFavoriteOfOwner": [
+      {
+        "urlTemplate": "/{organization}/_apis/favorite/favorites?ownerScopeType={ownerScopeType}&ownerScopeId={ownerScopeId}",
+        "verb": "post",
+        "apiVersion": "7.1-preview.1",
+        "description": "",
+        "operationId": "Favorites_Create Favorite Of Owner",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "ownerScopeType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "ownerScopeId",
+              "description": "",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            }
+          ],
+          "header": [],
+          "body": {
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FavoriteCreateParameters"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Favorite"
+            }
+          }
+        }
+      }
+    ],
+    "GetFavoritesOfOwner": [
+      {
+        "urlTemplate": "/{organization}/_apis/favorite/favorites?ownerScopeType={ownerScopeType}&ownerScopeId={ownerScopeId}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "",
+        "operationId": "Favorites_Get Favorites Of Owner",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "ownerScopeType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "ownerScopeId",
+              "description": "",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "name": "artifactType",
+              "description": "",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "artifactScopeType",
+              "description": "",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "artifactScopeId",
+              "description": "",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "includeExtendedDetails",
+              "description": "",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Favorite"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetFavoriteByArtifact": [
+      {
+        "urlTemplate": "/{organization}/_apis/favorite/favorites?artifactType={artifactType}&artifactId={artifactId}&artifactScopeType={artifactScopeType}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "",
+        "operationId": "Favorites_Get Favorite By Artifact",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "artifactType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "artifactId",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "artifactScopeType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "artifactScopeId",
+              "description": "",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "includeExtendedDetails",
+              "description": "",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Favorite"
+            }
+          }
+        }
+      }
+    ],
+    "DeleteFavoriteOfOwnerById": [
+      {
+        "urlTemplate": "/{organization}/_apis/favorite/favorites/{favoriteId}?ownerScopeType={ownerScopeType}&ownerScopeId={ownerScopeId}&artifactType={artifactType}&artifactScopeType={artifactScopeType}",
+        "verb": "delete",
+        "apiVersion": "7.1-preview.1",
+        "description": "",
+        "operationId": "Favorites_Delete Favorite Of Owner By Id",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "favoriteId",
+              "description": "",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            }
+          ],
+          "query": [
+            {
+              "name": "ownerScopeType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "ownerScopeId",
+              "description": "",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "name": "artifactType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "artifactScopeType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "artifactScopeId",
+              "description": "",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    ],
+    "GetFavoriteOfOwnerById": [
+      {
+        "urlTemplate": "/{organization}/_apis/favorite/favorites/{favoriteId}?ownerScopeType={ownerScopeType}&ownerScopeId={ownerScopeId}&artifactScopeType={artifactScopeType}&artifactType={artifactType}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "",
+        "operationId": "Favorites_Get Favorite Of Owner By Id",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "favoriteId",
+              "description": "",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            }
+          ],
+          "query": [
+            {
+              "name": "ownerScopeType",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "ownerScopeId",
+              "description": "",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            },
             {
               "name": "artifactScopeType",
               "description": "",
@@ -24341,6 +25300,607 @@
           }
         }
       }
+    ],
+    "GetRepositoryWithParent": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/git/repositories/{repositoryId}?includeParent={includeParent}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Retrieve a git repository.",
+        "operationId": "Repositories_Get Repository With Parent",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "repositoryId",
+              "description": "The name or ID of the repository.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "includeParent",
+              "description": "True to include parent repository. Only available in authenticated calls.",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GitRepository"
+            }
+          }
+        }
+      }
+    ],
+    "GetCommits": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/git/repositories/{repositoryId}/commits?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Retrieve git commits for a project\n\nParameters that use the searchCriteria prefix in their name can be specified without it as query parameters, e.g. searchCriteria.$top -> $top",
+        "operationId": "Commits_Get Commits",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "repositoryId",
+              "description": "The id or friendly name of the repository. To use the friendly name, projectId must also be specified.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "searchCriteria.$skip",
+              "description": "Number of entries to skip",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "searchCriteria.$top",
+              "description": "Maximum number of entries to retrieve",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "searchCriteria.author",
+              "description": "Alias or display name of the author",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.compareVersion.version",
+              "description": "Version string identifier (name of tag/branch, SHA1 of commit)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.compareVersion.versionOptions",
+              "description": "Version options - Specify additional modifiers to version (e.g Previous)",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionOptions",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Not specified"
+                  },
+                  {
+                    "value": "previousChange",
+                    "description": "Commit that changed item prior to the current version"
+                  },
+                  {
+                    "value": "firstParent",
+                    "description": "First parent of commit (HEAD^)"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "searchCriteria.compareVersion.versionType",
+              "description": "Version type (branch, tag, or commit). Determines how Id is interpreted",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionType",
+                "values": [
+                  {
+                    "value": "branch",
+                    "description": "Interpret the version as a branch name"
+                  },
+                  {
+                    "value": "tag",
+                    "description": "Interpret the version as a tag name"
+                  },
+                  {
+                    "value": "commit",
+                    "description": "Interpret the version as a commit ID (SHA1)"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "searchCriteria.excludeDeletes",
+              "description": "Only applies when an itemPath is specified. This determines whether to exclude delete entries of the specified path.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "searchCriteria.fromCommitId",
+              "description": "If provided, a lower bound for filtering commits alphabetically",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.fromDate",
+              "description": "If provided, only include history entries created after this date (string)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.historyMode",
+              "description": "What Git history mode should be used. This only applies to the search criteria when Ids = null and an itemPath is specified.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitHistoryMode",
+                "values": [
+                  {
+                    "value": "simplifiedHistory",
+                    "description": "The history mode used by `git log`. This is the default."
+                  },
+                  {
+                    "value": "firstParent",
+                    "description": "The history mode used by `git log --first-parent`"
+                  },
+                  {
+                    "value": "fullHistory",
+                    "description": "The history mode used by `git log --full-history`"
+                  },
+                  {
+                    "value": "fullHistorySimplifyMerges",
+                    "description": "The history mode used by `git log --full-history --simplify-merges`"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "searchCriteria.ids",
+              "description": "If provided, specifies the exact commit ids of the commits to fetch. May not be combined with other parameters.",
+              "required": false,
+              "type": "array"
+            },
+            {
+              "name": "searchCriteria.includeLinks",
+              "description": "Whether to include the _links field on the shallow references",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "searchCriteria.includePushData",
+              "description": "Whether to include the push information",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "searchCriteria.includeUserImageUrl",
+              "description": "Whether to include the image Url for committers and authors",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "searchCriteria.includeWorkItems",
+              "description": "Whether to include linked work items",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "searchCriteria.itemPath",
+              "description": "Path of item to search under",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.itemVersion.version",
+              "description": "Version string identifier (name of tag/branch, SHA1 of commit)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.itemVersion.versionOptions",
+              "description": "Version options - Specify additional modifiers to version (e.g Previous)",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionOptions",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Not specified"
+                  },
+                  {
+                    "value": "previousChange",
+                    "description": "Commit that changed item prior to the current version"
+                  },
+                  {
+                    "value": "firstParent",
+                    "description": "First parent of commit (HEAD^)"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "searchCriteria.itemVersion.versionType",
+              "description": "Version type (branch, tag, or commit). Determines how Id is interpreted",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionType",
+                "values": [
+                  {
+                    "value": "branch",
+                    "description": "Interpret the version as a branch name"
+                  },
+                  {
+                    "value": "tag",
+                    "description": "Interpret the version as a tag name"
+                  },
+                  {
+                    "value": "commit",
+                    "description": "Interpret the version as a commit ID (SHA1)"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "searchCriteria.showOldestCommitsFirst",
+              "description": "If enabled, this option will ignore the itemVersion and compareVersion parameters",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "searchCriteria.toCommitId",
+              "description": "If provided, an upper bound for filtering commits alphabetically",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.toDate",
+              "description": "If provided, only include history entries created before this date (string)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "searchCriteria.user",
+              "description": "Alias or display name of the committer",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GitCommitRef"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetItem": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/git/repositories/{repositoryId}/items?path={path}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get Item Metadata and/or Content for a single item. The download parameter is to indicate whether the content should be available as a download or just sent as a stream in the response. Doesn't apply to zipped content, which is always returned as a download.",
+        "operationId": "Items_Get",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "repositoryId",
+              "description": "The name or ID of the repository.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "path",
+              "description": "The item path.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "scopePath",
+              "description": "The path scope.  The default is null.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "recursionLevel",
+              "description": "The recursion level of this request. The default is 'none', no recursion.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "VersionControlRecursionType",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Only return the specified item."
+                  },
+                  {
+                    "value": "oneLevel",
+                    "description": "Return the specified item and its direct children."
+                  },
+                  {
+                    "value": "oneLevelPlusNestedEmptyFolders",
+                    "description": "Return the specified item and its direct children, as well as recursive chains of nested child folders that only contain a single folder."
+                  },
+                  {
+                    "value": "full",
+                    "description": "Return specified item and all descendants"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "includeContentMetadata",
+              "description": "Set to true to include content metadata.  Default is false.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "latestProcessedChange",
+              "description": "Set to true to include the latest changes.  Default is false.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "download",
+              "description": "Set to true to download the response as a file.  Default is false.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "$format",
+              "description": "If specified, this overrides the HTTP Accept request header to return either 'json' or 'zip'. If $format is specified, then api-version should also be specified as a query parameter.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "versionDescriptor.version",
+              "description": "Version string identifier (name of tag/branch, SHA1 of commit)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "versionDescriptor.versionOptions",
+              "description": "Version options - Specify additional modifiers to version (e.g Previous)",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionOptions",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Not specified"
+                  },
+                  {
+                    "value": "previousChange",
+                    "description": "Commit that changed item prior to the current version"
+                  },
+                  {
+                    "value": "firstParent",
+                    "description": "First parent of commit (HEAD^)"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "versionDescriptor.versionType",
+              "description": "Version type (branch, tag, or commit). Determines how Id is interpreted",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionType",
+                "values": [
+                  {
+                    "value": "branch",
+                    "description": "Interpret the version as a branch name"
+                  },
+                  {
+                    "value": "tag",
+                    "description": "Interpret the version as a tag name"
+                  },
+                  {
+                    "value": "commit",
+                    "description": "Interpret the version as a commit ID (SHA1)"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "includeContent",
+              "description": "Set to true to include item content when requesting json.  Default is false.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "resolveLfs",
+              "description": "Set to true to resolve Git LFS pointer files to return actual content from Git LFS.  Default is false.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "sanitize",
+              "description": "Set to true to sanitize an svg file and return it as image. Useful only if requested for svg file. Default is false.",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GitItem"
+            }
+          }
+        }
+      }
+    ],
+    "GetBranch": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/git/repositories/{repositoryId}/stats/branches?name={name}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Retrieve statistics about a single branch.",
+        "operationId": "Stats_Get",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "repositoryId",
+              "description": "The name or ID of the repository.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "name",
+              "description": "Name of the branch.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "baseVersionDescriptor.version",
+              "description": "Version string identifier (name of tag/branch, SHA1 of commit)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "baseVersionDescriptor.versionOptions",
+              "description": "Version options - Specify additional modifiers to version (e.g Previous)",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionOptions",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Not specified"
+                  },
+                  {
+                    "value": "previousChange",
+                    "description": "Commit that changed item prior to the current version"
+                  },
+                  {
+                    "value": "firstParent",
+                    "description": "First parent of commit (HEAD^)"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "baseVersionDescriptor.versionType",
+              "description": "Version type (branch, tag, or commit). Determines how Id is interpreted",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "GitVersionType",
+                "values": [
+                  {
+                    "value": "branch",
+                    "description": "Interpret the version as a branch name"
+                  },
+                  {
+                    "value": "tag",
+                    "description": "Interpret the version as a tag name"
+                  },
+                  {
+                    "value": "commit",
+                    "description": "Interpret the version as a commit ID (SHA1)"
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GitBranchStats"
+            }
+          }
+        }
+      }
     ]
   },
   "graph": {
@@ -29946,6 +31506,50 @@
           }
         }
       }
+    ],
+    "GetBehavior": [
+      {
+        "urlTemplate": "/{organization}/_apis/work/processadmin/{processId}/behaviors?behaviorRefName={behaviorRefName}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Returns a behavior for the process.",
+        "operationId": "Behaviors_Get",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "processId",
+              "description": "The ID of the process",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            }
+          ],
+          "query": [
+            {
+              "name": "behaviorRefName",
+              "description": "The reference name of the behavior",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AdminBehavior"
+            }
+          }
+        }
+      }
     ]
   },
   "workitemtracking": {
@@ -32832,6 +34436,88 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/PickList"
+            }
+          }
+        }
+      }
+    ],
+    "MoveGroupToPage": [
+      {
+        "urlTemplate": "/{organization}/_apis/work/processes/{processId}/workItemTypes/{witRefName}/layout/pages/{pageId}/sections/{sectionId}/groups/{groupId}?removeFromPageId={removeFromPageId}&removeFromSectionId={removeFromSectionId}",
+        "verb": "put",
+        "apiVersion": "7.1-preview.1",
+        "description": "Moves a group to a different page and section.",
+        "operationId": "Groups_Move Group To Page",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "processId",
+              "description": "The ID of the process.",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "name": "witRefName",
+              "description": "The reference name of the work item type.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "pageId",
+              "description": "The ID of the page the group is in.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "sectionId",
+              "description": "The ID of the section the group is i.n",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "groupId",
+              "description": "The ID of the group.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "removeFromPageId",
+              "description": "ID of the page to remove the group from.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "removeFromSectionId",
+              "description": "ID of the section to remove the group from.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": [],
+          "body": {
+            "name": "body",
+            "description": "The updated group.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Group"
             }
           }
         }
@@ -37531,6 +39217,475 @@
           }
         }
       }
+    ],
+    "GetClassificationNodes": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/wit/classificationnodes?ids={ids}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.2",
+        "description": "Gets root classification nodes or list of classification nodes for a given list of nodes ids, for a given project. In case ids parameter is supplied you will  get list of classification nodes for those ids. Otherwise you will get root classification nodes for this project.",
+        "operationId": "Classification Nodes_Get Classification Nodes",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "ids",
+              "description": "Comma separated integer classification nodes ids. It's not required, if you want root nodes.",
+              "required": true,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "$depth",
+              "description": "Depth of children to fetch.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "errorPolicy",
+              "description": "Flag to handle errors in getting some nodes. Possible options are Fail and Omit.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "ClassificationNodesErrorPolicy",
+                "values": [
+                  {
+                    "value": "fail",
+                    "description": ""
+                  },
+                  {
+                    "value": "omit",
+                    "description": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WorkItemClassificationNode"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "SearchQueries": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/wit/queries?$filter={$filter}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.2",
+        "description": "Searches all queries the user has access to in the current project",
+        "operationId": "Queries_Search Queries",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "$filter",
+              "description": "The text to filter the queries with.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "$top",
+              "description": "The number of queries to return (Default is 50 and maximum is 200).",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "$expand",
+              "description": "",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "QueryExpand",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Expands Columns, Links and ChangeInfo"
+                  },
+                  {
+                    "value": "wiql",
+                    "description": "Expands Columns, Links,  ChangeInfo and WIQL text"
+                  },
+                  {
+                    "value": "clauses",
+                    "description": "Expands Columns, Links, ChangeInfo, WIQL text and clauses"
+                  },
+                  {
+                    "value": "all",
+                    "description": "Expands all properties"
+                  },
+                  {
+                    "value": "minimal",
+                    "description": "Displays minimal properties and the WIQL text"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "$includeDeleted",
+              "description": "Include deleted queries and folders",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QueryHierarchyItemsResult"
+            }
+          }
+        }
+      }
+    ],
+    "GetDeletedWorkItems": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/wit/recyclebin?ids={ids}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.2",
+        "description": "Gets the work items from the recycle bin, whose IDs have been specified in the parameters",
+        "operationId": "Recyclebin_Get Deleted Work Items",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "ids",
+              "description": "Comma separated list of IDs of the deleted work items to be returned",
+              "required": true,
+              "type": "string",
+              "format": "array (int32)"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WorkItemDeleteReference"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "AddWorkItemComment": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/wit/workItems/{workItemId}/comments?format={format}",
+        "verb": "post",
+        "apiVersion": "7.1-preview.4",
+        "description": "Add a comment on a work item.",
+        "operationId": "Comments_Add Work Item Comment",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "workItemId",
+              "description": "Id of a work item.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "format",
+              "description": "Format of a work item comment (Markdown or Html).",
+              "required": true,
+              "type": "string",
+              "enum": {
+                "name": "CommentFormat",
+                "values": [
+                  {
+                    "value": "markdown",
+                    "description": ""
+                  },
+                  {
+                    "value": "html",
+                    "description": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "header": [],
+          "body": {
+            "name": "body",
+            "description": "Comment create request.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommentCreate"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Comment"
+            }
+          }
+        }
+      }
+    ],
+    "GetComments": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/wit/workItems/{workItemId}/comments?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.4",
+        "description": "Returns a list of work item comments, pageable.",
+        "operationId": "Comments_Get Comments",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "workItemId",
+              "description": "Id of a work item to get comments for.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "$top",
+              "description": "Max number of comments to return.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "continuationToken",
+              "description": "Used to query for the next page of comments.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "includeDeleted",
+              "description": "Specify if the deleted comments should be retrieved.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "$expand",
+              "description": "Specifies the additional data retrieval options for work item comments.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "CommentExpandOptions",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": ""
+                  },
+                  {
+                    "value": "reactions",
+                    "description": "Include comment reactions."
+                  },
+                  {
+                    "value": "renderedText",
+                    "description": "Include the rendered text (html) in addition to MD text."
+                  },
+                  {
+                    "value": "renderedTextOnly",
+                    "description": "If specified, then ONLY rendered text (html) will be returned, w/o markdown. Supposed to be used internally from data provides for optimization purposes."
+                  },
+                  {
+                    "value": "all",
+                    "description": ""
+                  }
+                ]
+              }
+            },
+            {
+              "name": "order",
+              "description": "Order in which the comments should be returned.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "CommentSortOrder",
+                "values": [
+                  {
+                    "value": "asc",
+                    "description": "The results will be sorted in Ascending order."
+                  },
+                  {
+                    "value": "desc",
+                    "description": "The results will be sorted in Descending order."
+                  }
+                ]
+              }
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CommentList"
+            }
+          }
+        }
+      }
+    ],
+    "UpdateWorkItemComment": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/wit/workItems/{workItemId}/comments/{commentId}?format={format}",
+        "verb": "patch",
+        "apiVersion": "7.1-preview.4",
+        "description": "Update a comment on a work item.",
+        "operationId": "Comments_Update Work Item Comment",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "workItemId",
+              "description": "Id of a work item.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "commentId",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "format",
+              "description": "Format of a work item comment (Markdown or Html).",
+              "required": true,
+              "type": "string",
+              "enum": {
+                "name": "CommentFormat",
+                "values": [
+                  {
+                    "value": "markdown",
+                    "description": ""
+                  },
+                  {
+                    "value": "html",
+                    "description": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "header": [],
+          "body": {
+            "name": "body",
+            "description": "Comment update request.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommentUpdate"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Comment"
+            }
+          }
+        }
+      }
     ]
   },
   "profile": {
@@ -39972,6 +42127,114 @@
           }
         }
       }
+    ],
+    "GetRelease": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/release/releases/{releaseId}?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.8",
+        "description": "Get a Release",
+        "operationId": "Releases_Get Release",
+        "host": "vsrm.dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "releaseId",
+              "description": "Id of the release.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "approvalFilters",
+              "description": "A filter which would allow fetching approval steps selectively based on whether it is automated, or manual. This would also decide whether we should fetch pre and post approval snapshots. Assumes All by default",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "ApprovalFilters",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "No approvals or approval snapshots."
+                  },
+                  {
+                    "value": "manualApprovals",
+                    "description": "Manual approval steps but no approval snapshots (Use with ApprovalSnapshots for snapshots)."
+                  },
+                  {
+                    "value": "automatedApprovals",
+                    "description": "Automated approval steps but no approval snapshots (Use with ApprovalSnapshots for snapshots)."
+                  },
+                  {
+                    "value": "approvalSnapshots",
+                    "description": "No approval steps, but approval snapshots (Use with either ManualApprovals or AutomatedApprovals for approval steps)."
+                  },
+                  {
+                    "value": "all",
+                    "description": "All approval steps and approval snapshots."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "propertyFilters",
+              "description": "A comma-delimited list of extended properties to be retrieved. If set, the returned Release will contain values for the specified property Ids (if they exist). If not set, properties will not be included.",
+              "required": false,
+              "type": "string",
+              "format": "array (string)"
+            },
+            {
+              "name": "$expand",
+              "description": "A property that should be expanded in the release.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "SingleReleaseExpands",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Return top level properties of object."
+                  },
+                  {
+                    "value": "tasks",
+                    "description": "Expand release with tasks."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "$topGateRecords",
+              "description": "Number of release gate records to get. Default is 5.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Release"
+            }
+          }
+        }
+      }
     ]
   },
   "search": {
@@ -40995,6 +43258,52 @@
           }
         }
       }
+    ],
+    "ChangeInheritance": [
+      {
+        "urlTemplate": "/{organization}/_apis/securityroles/scopes/{scopeId}/roleassignments/resources/{resourceId}?inheritPermissions={inheritPermissions}",
+        "verb": "patch",
+        "apiVersion": "7.1-preview.1",
+        "description": "",
+        "operationId": "Roleassignments_Change Inheritance",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "scopeId",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "resourceId",
+              "description": "",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "inheritPermissions",
+              "description": "",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
     ]
   },
   "serviceendpoint": {
@@ -41581,6 +43890,135 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/ServiceEndpoint"
+            }
+          }
+        }
+      }
+    ],
+    "ExecuteServiceEndpointRequest": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/serviceendpoint/endpointproxy?endpointId={endpointId}",
+        "verb": "post",
+        "apiVersion": "7.1-preview.1",
+        "description": "Proxy for a GET request defined by a service endpoint.",
+        "operationId": "Endpointproxy_Execute Service Endpoint Request",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "endpointId",
+              "description": "Id of the service endpoint.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": [],
+          "body": {
+            "name": "body",
+            "description": "Service endpoint request.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ServiceEndpointRequest"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ServiceEndpointRequestResult"
+            }
+          }
+        }
+      }
+    ],
+    "GetServiceEndpoints": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/serviceendpoint/endpoints?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.4",
+        "description": "Get the service endpoints.",
+        "operationId": "Endpoints_Get Service Endpoints",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "type",
+              "description": "Type of the service endpoints.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "authSchemes",
+              "description": "Authorization schemes used for service endpoints.",
+              "required": false,
+              "type": "string",
+              "format": "array (string)"
+            },
+            {
+              "name": "endpointIds",
+              "description": "Ids of the service endpoints.",
+              "required": false,
+              "type": "string",
+              "format": "array (uuid)"
+            },
+            {
+              "name": "owner",
+              "description": "Owner for service endpoints.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "includeFailed",
+              "description": "Failed flag for service endpoints.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "includeDetails",
+              "description": "Flag to include more details for service endpoints. This is for internal use only and the flag will be treated as false for all other requests",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ServiceEndpoint"
+              }
             }
           }
         }
@@ -42197,6 +44635,78 @@
           },
           "404": {
             "description": "No debug entry was found for this client key."
+          }
+        }
+      }
+    ],
+    "CreateRequestsRequestNameDebugEntriesAsync": [
+      {
+        "urlTemplate": "/{organization}/_apis/symbol/requests?requestName={requestName}&collection={collection}",
+        "verb": "post",
+        "apiVersion": "7.1-preview.1",
+        "description": "Create debug entries for a symbol request as specified by its name.",
+        "operationId": "Requests_Create Requests Request Name Debug Entries",
+        "host": "artifacts.dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "requestName",
+              "description": "The symbol request name.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "collection",
+              "description": "A valid debug entry collection name. Must be \"debugentries\".",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": [],
+          "body": {
+            "name": "body",
+            "description": "A batch that contains debug entries to create.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DebugEntryCreateBatch"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created debug entries for the specified request.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DebugEntry"
+              }
+            }
+          },
+          "400": {
+            "description": "Could not create debug entries since the specified create behavior is not recognized.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DebugEntry"
+              }
+            }
+          },
+          "409": {
+            "description": "Could not create debug entries since at least one entry already exists and the specified create behavior is ThrowIfExists.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DebugEntry"
+              }
+            }
           }
         }
       }
@@ -44316,6 +46826,395 @@
           }
         }
       }
+    ],
+    "QueryTestRuns": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/test/runs?minLastUpdatedDate={minLastUpdatedDate}&maxLastUpdatedDate={maxLastUpdatedDate}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.3",
+        "description": "Query Test Runs based on filters. Mandatory fields are minLastUpdatedDate and maxLastUpdatedDate.",
+        "operationId": "Runs_Query",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "minLastUpdatedDate",
+              "description": "Minimum Last Modified Date of run to be queried (Mandatory).",
+              "required": true,
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "name": "maxLastUpdatedDate",
+              "description": "Maximum Last Modified Date of run to be queried (Mandatory, difference between min and max date can be atmost 7 days).",
+              "required": true,
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "name": "state",
+              "description": "Current state of the Runs to be queried.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TestRunState",
+                "values": [
+                  {
+                    "value": "unspecified",
+                    "description": "Only used during an update to preserve the existing value."
+                  },
+                  {
+                    "value": "notStarted",
+                    "description": "The run is still being created.  No tests have started yet."
+                  },
+                  {
+                    "value": "inProgress",
+                    "description": "Tests are running."
+                  },
+                  {
+                    "value": "completed",
+                    "description": "All tests have completed or been skipped."
+                  },
+                  {
+                    "value": "aborted",
+                    "description": "Run is stopped and remaining tests have been aborted"
+                  },
+                  {
+                    "value": "waiting",
+                    "description": "Run is currently initializing This is a legacy state and should not be used any more"
+                  },
+                  {
+                    "value": "needsInvestigation",
+                    "description": "Run requires investigation because of a test point failure This is a legacy state and should not be used any more"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "planIds",
+              "description": "Plan Ids of the Runs to be queried, comma separated list of valid ids (limit no. of ids 10).",
+              "required": false,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "isAutomated",
+              "description": "Automation type of the Runs to be queried.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "publishContext",
+              "description": "PublishContext of the Runs to be queried.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TestRunPublishContext",
+                "values": [
+                  {
+                    "value": "build",
+                    "description": "Run is published for Build Context."
+                  },
+                  {
+                    "value": "release",
+                    "description": "Run is published for Release Context."
+                  },
+                  {
+                    "value": "all",
+                    "description": "Run is published for any Context."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "buildIds",
+              "description": "Build Ids of the Runs to be queried, comma separated list of valid ids (limit no. of ids 10).",
+              "required": false,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "buildDefIds",
+              "description": "Build Definition Ids of the Runs to be queried, comma separated list of valid ids (limit no. of ids 10).",
+              "required": false,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "branchName",
+              "description": "Source Branch name of the Runs to be queried.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "releaseIds",
+              "description": "Release Ids of the Runs to be queried, comma separated list of valid ids (limit no. of ids 10).",
+              "required": false,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "releaseDefIds",
+              "description": "Release Definition Ids of the Runs to be queried, comma separated list of valid ids (limit no. of ids 10).",
+              "required": false,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "releaseEnvIds",
+              "description": "Release Environment Ids of the Runs to be queried, comma separated list of valid ids (limit no. of ids 10).",
+              "required": false,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "releaseEnvDefIds",
+              "description": "Release Environment Definition Ids of the Runs to be queried, comma separated list of valid ids (limit no. of ids 10).",
+              "required": false,
+              "type": "string",
+              "format": "array (int32)"
+            },
+            {
+              "name": "runTitle",
+              "description": "Run Title of the Runs to be queried.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "$top",
+              "description": "Number of runs to be queried. Limit is 100",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "continuationToken",
+              "description": "continuationToken received from previous batch or null for first batch. It is not supposed to be created (or altered, if received from last batch) by user.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TestRun"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetTestSubResultAttachments": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/test/Runs/{runId}/Results/{testCaseResultId}/attachments?testSubResultId={testSubResultId}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get list of test sub result attachments",
+        "operationId": "Attachments_Get Test Sub Result Attachments",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "runId",
+              "description": "ID of the test run that contains the result.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "testCaseResultId",
+              "description": "ID of the test results that contains sub result.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "testSubResultId",
+              "description": "ID of the test sub result whose attachment has to be downloaded",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TestAttachment"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "CreateTestSubResultAttachment": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/test/Runs/{runId}/Results/{testCaseResultId}/attachments?testSubResultId={testSubResultId}",
+        "verb": "post",
+        "apiVersion": "7.1-preview.1",
+        "description": "Attach a file to a test result",
+        "operationId": "Attachments_Create Test Sub Result Attachment",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "runId",
+              "description": "ID of the test run that contains the result.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "testCaseResultId",
+              "description": "ID of the test results that contains sub result.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "testSubResultId",
+              "description": "ID of the test sub results against which attachment has to be uploaded.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": [],
+          "body": {
+            "name": "body",
+            "description": "Attachment Request Model.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TestAttachmentRequestModel"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TestAttachmentReference"
+            }
+          }
+        }
+      }
+    ],
+    "GetTestSubResultAttachment": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/test/Runs/{runId}/Results/{testCaseResultId}/attachments/{attachmentId}?testSubResultId={testSubResultId}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Download a test sub result attachment",
+        "operationId": "Attachments_Get Test Sub Result Attachment Zip",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "runId",
+              "description": "ID of the test run that contains the result.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "testCaseResultId",
+              "description": "ID of the test results that contains sub result.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "attachmentId",
+              "description": "ID of the test result attachment to be downloaded",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "testSubResultId",
+              "description": "ID of the test sub result whose attachment has to be downloaded",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "format": "Stream"
+            }
+          }
+        }
+      }
     ]
   },
   "testplan": {
@@ -46323,6 +49222,150 @@
           }
         }
       }
+    ],
+    "RemoveTestCasesFromSuite": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/testplan/Plans/{planId}/Suites/{suiteId}/TestCase?testCaseIds={testCaseIds}",
+        "verb": "delete",
+        "apiVersion": "7.1-preview.3",
+        "description": "Removes test cases from a suite based on the list of test case Ids provided.",
+        "operationId": "Suite Test Case_Remove Test Cases From Suite",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "planId",
+              "description": "ID of the test plan from which test cases are to be removed.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "suiteId",
+              "description": "ID of the test suite from which test cases are to be removed.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "testCaseIds",
+              "description": "Test Case Ids to be removed.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    ],
+    "GetPointsList": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/testplan/Plans/{planId}/Suites/{suiteId}/TestPoint?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.2",
+        "description": "Get all the points inside a suite based on some filters",
+        "operationId": "Test Point_Get Points List",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "planId",
+              "description": "ID of the test plan for which test points are requested.",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "suiteId",
+              "description": "ID of the test suite for which test points are requested",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "testPointIds",
+              "description": "ID of test points to fetch.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "testCaseId",
+              "description": "Get Test Points for specific test case Ids.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "continuationToken",
+              "description": "If the list of test point returned is not complete, a continuation token to query next batch of test points is included in the response header as \"x-ms-continuationtoken\". Omit this parameter to get the first batch of test points.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "returnIdentityRef",
+              "description": "If set to true, returns the AssignedTo field in TestCaseReference as IdentityRef object.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "includePointDetails",
+              "description": "If set to false, will get a smaller payload containing only basic details about the test point object",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "isRecursive",
+              "description": "If set to true, will also fetch test points belonging to child suites recursively.",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TestPoint"
+              }
+            }
+          }
+        }
+      }
     ]
   },
   "testresults": {
@@ -47249,6 +50292,244 @@
         "responses": {
           "200": {
             "description": "successful operation"
+          }
+        }
+      }
+    ],
+    "GetTestSubResultLogsAsync": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/testresults/runs/{runId}/results/{resultId}/testlog?subResultId={subResultId}&type={type}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get list of test subresult attachments reference",
+        "operationId": "Testlog_Get Test Sub Result Logs",
+        "host": "vstmr.dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "runId",
+              "description": "Id of the test run that contains the results",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "resultId",
+              "description": "Id of the test result that contains subresult",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "subResultId",
+              "description": "Id of the test subresult",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "type",
+              "description": "type of the attachments to get",
+              "required": true,
+              "type": "string",
+              "enum": {
+                "name": "TestLogType",
+                "values": [
+                  {
+                    "value": "generalAttachment",
+                    "description": "Any gereric attachment."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "directoryPath",
+              "description": "directory path of the attachment to get",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "fileNamePrefix",
+              "description": "file name prefix to filter the list of attachments",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "fetchMetaData",
+              "description": "Default is false, set if metadata is needed",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "top",
+              "description": "Number of attachments reference to return",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": [
+            {
+              "name": "continuationToken",
+              "description": "Header to pass the continuationToken",
+              "required": false,
+              "type": "string"
+            }
+          ]
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TestLog"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetTestLogStoreEndpointDetailsForSubResultLog": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/testresults/runs/{runId}/results/{resultId}/testlogstoreendpoint?subResultId={subResultId}&type={type}&filePath={filePath}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get SAS Uri of a test subresults attachment",
+        "operationId": "Testlogstoreendpoint_Get Test Log Store Endpoint Details For Sub Result Log",
+        "host": "vstmr.dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "runId",
+              "description": "Id of the test run that contains result",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "resultId",
+              "description": "Id of the test result that contains subresult",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "subResultId",
+              "description": "Id of the test subresult whose file sas uri is needed",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "type",
+              "description": "type of the file",
+              "required": true,
+              "type": "string",
+              "enum": {
+                "name": "TestLogType",
+                "values": [
+                  {
+                    "value": "generalAttachment",
+                    "description": "Any gereric attachment."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "filePath",
+              "description": "filePath for which sas uri is needed",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TestLogStoreEndpointDetails"
+            }
+          }
+        }
+      }
+    ],
+    "GetTestRunLogStoreAttachment": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/testresults/runs/{runId}/testattachments?filename={filename}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Returns the attachment with the specified filename for the specified runId from the LogStore.",
+        "operationId": "Testattachments_Get",
+        "host": "vstmr.dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "runId",
+              "description": "Test RunId",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "query": [
+            {
+              "name": "filename",
+              "description": "Attachment FileName",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "format": "Stream"
+            }
           }
         }
       }
@@ -48381,6 +51662,383 @@
           }
         }
       }
+    ],
+    "GetShelvesets": [
+      {
+        "urlTemplate": "/{organization}/_apis/tfvc/shelvesets?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Return a collection of shallow shelveset references.",
+        "operationId": "Shelvesets_List",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "requestData.includeDetails",
+              "description": "Whether to include policyOverride and notes Only applies when requesting a single deep shelveset",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "requestData.includeLinks",
+              "description": "Whether to include the _links field on the shallow references. Does not apply when requesting a single deep shelveset object. Links will always be included in the deep shelveset.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "requestData.includeWorkItems",
+              "description": "Whether to include workItems",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "requestData.maxChangeCount",
+              "description": "Max number of changes to include",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "requestData.maxCommentLength",
+              "description": "Max length of comment",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "requestData.name",
+              "description": "Shelveset name",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "requestData.owner",
+              "description": "Owner's ID. Could be a name or a guid.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "$top",
+              "description": "Max number of shelvesets to return",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "$skip",
+              "description": "Number of shelvesets to skip",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TfvcShelvesetRef"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetBranch": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/tfvc/branches?path={path}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get a single branch hierarchy at the given path with parents or children as specified.",
+        "operationId": "Branches_Get",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "path",
+              "description": "Full path to the branch.  Default: $/ Examples: $/, $/MyProject, $/MyProject/SomeFolder.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "includeParent",
+              "description": "Return the parent branch, if there is one. Default: False",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "includeChildren",
+              "description": "Return child branches, if there are any. Default: False",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TfvcBranch"
+            }
+          }
+        }
+      }
+    ],
+    "GetBranches": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/tfvc/branches?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get a collection of branch roots -- first-level children, branches with no parents.",
+        "operationId": "Branches_Get Branches",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "includeParent",
+              "description": "Return the parent branch, if there is one. Default: False",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "includeChildren",
+              "description": "Return the child branches for each root branch. Default: False",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "includeDeleted",
+              "description": "Return deleted branches. Default: False",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "includeLinks",
+              "description": "Return links. Default: False",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TfvcBranch"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "GetItem": [
+      {
+        "urlTemplate": "/{organization}/{project}/_apis/tfvc/items?path={path}",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Get Item Metadata and/or Content for a single item. The download parameter is to indicate whether the content should be available as a download or just sent as a stream in the response. Doesn't apply to zipped content which is always returned as a download.",
+        "operationId": "Items_Get",
+        "host": "dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "Project ID or project name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "path",
+              "description": "Version control path of an individual item to return.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "fileName",
+              "description": "file name of item returned.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "download",
+              "description": "If true, create a downloadable attachment.",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "scopePath",
+              "description": "Version control path of a folder to return multiple items.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "recursionLevel",
+              "description": "None (just the item), or OneLevel (contents of a folder).",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "VersionControlRecursionType",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Only return the specified item."
+                  },
+                  {
+                    "value": "oneLevel",
+                    "description": "Return the specified item and its direct children."
+                  },
+                  {
+                    "value": "oneLevelPlusNestedEmptyFolders",
+                    "description": "Return the specified item and its direct children, as well as recursive chains of nested child folders that only contain a single folder."
+                  },
+                  {
+                    "value": "full",
+                    "description": "Return specified item and all descendants"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "versionDescriptor.version",
+              "description": "Version object.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "versionDescriptor.versionOption",
+              "description": "Version descriptor.  Default is null.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TfvcVersionOption",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "None."
+                  },
+                  {
+                    "value": "previous",
+                    "description": "Return the previous version."
+                  },
+                  {
+                    "value": "useRename",
+                    "description": "Only usuable with versiontype MergeSource and integer versions, uses RenameSource identifier instead of Merge identifier."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "versionDescriptor.versionType",
+              "description": "Version descriptor.  Default is null.",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "TfvcVersionType",
+                "values": [
+                  {
+                    "value": "none",
+                    "description": "Version is treated as a ChangesetId."
+                  },
+                  {
+                    "value": "changeset",
+                    "description": "Version is treated as a ChangesetId."
+                  },
+                  {
+                    "value": "shelveset",
+                    "description": "Version is treated as a Shelveset name and owner."
+                  },
+                  {
+                    "value": "change",
+                    "description": "Version is treated as a Change."
+                  },
+                  {
+                    "value": "date",
+                    "description": "Version is treated as a Date."
+                  },
+                  {
+                    "value": "latest",
+                    "description": "If Version is defined the Latest of that Version will be used, if no version is defined the latest ChangesetId will be used."
+                  },
+                  {
+                    "value": "tip",
+                    "description": "Version will be treated as a Tip, if no version is defined latest will be used."
+                  },
+                  {
+                    "value": "mergeSource",
+                    "description": "Version will be treated as a MergeSource."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "includeContent",
+              "description": "Set to true to include item content when requesting json.  Default is false.",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TfvcItem"
+            }
+          }
+        }
+      }
     ]
   },
   "tokenadmin": {
@@ -48687,6 +52345,106 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/PatTokenResult"
+            }
+          }
+        }
+      }
+    ],
+    "ListPats": [
+      {
+        "urlTemplate": "/{organization}/_apis/tokens/pats?",
+        "verb": "get",
+        "apiVersion": "7.1-preview.1",
+        "description": "Gets a paged list of personal access tokens (PATs) created in this organization. Subsequent calls to the API require the same filtering options to be supplied.",
+        "operationId": "Pats_List",
+        "host": "vssps.dev.azure.com",
+        "parameters": {
+          "path": [
+            {
+              "name": "organization",
+              "description": "The name of the Azure DevOps organization.",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "query": [
+            {
+              "name": "displayFilterOption",
+              "description": "(Optional) Refers to the status of the personal access token (PAT)",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "DisplayFilterOptions",
+                "values": [
+                  {
+                    "value": "active",
+                    "description": "Token is active (e.g. has not been revoked and has not expired)."
+                  },
+                  {
+                    "value": "revoked",
+                    "description": "Token has been revoked and is no longer usable."
+                  },
+                  {
+                    "value": "expired",
+                    "description": "Token has expired and is no longer usable unless updated with a new expiration date."
+                  },
+                  {
+                    "value": "all",
+                    "description": "Includes all tokens."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "sortByOption",
+              "description": "(Optional) Which field to sort by",
+              "required": false,
+              "type": "string",
+              "enum": {
+                "name": "SortByOptions",
+                "values": [
+                  {
+                    "value": "displayName",
+                    "description": "Sort by display name"
+                  },
+                  {
+                    "value": "displayDate",
+                    "description": "Sort by display date"
+                  },
+                  {
+                    "value": "status",
+                    "description": "Sort by status"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "isSortAscending",
+              "description": "(Optional) Ascending or descending",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "continuationToken",
+              "description": "(Optional) Where to start returning tokens from",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "$top",
+              "description": "(Optional) How many tokens to return, limit of 100",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "header": []
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PagedPatTokens"
             }
           }
         }

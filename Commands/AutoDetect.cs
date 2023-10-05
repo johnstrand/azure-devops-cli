@@ -11,7 +11,7 @@ internal static class AutoDetect
             throw new("Unable to resolve remote");
         }
 
-        Console.WriteLine($"Remote: {remote}");
+        Console.WriteLine($"Remote: {string.Join(", ", remote)}");
         if (!Git.FindAzureDevopsInfo(out var o, out var p, out var r))
         {
             throw new("Unable to resolve organization, project, and repository");

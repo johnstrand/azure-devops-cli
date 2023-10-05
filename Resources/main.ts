@@ -163,13 +163,19 @@ function createModel(api: OpenAPI) {
   const host = api.host;
   const area = api["x-ms-vss-area"].toLowerCase();
 
+  console.log(`Exporting ${area}`);
+
   if (!model[area]) {
     model[area] = {};
   }
 
-  for (const [urlTemplate, operations] of Object.entries(api.paths)) {
+  for (const [urlTemplate, operations] of Object.entries(api.paths).concat(
+    Object.entries(api["x-ms-paths"] ?? {})
+  )) {
     for (const [verb, operation] of Object.entries(operations)) {
       const name = operation["x-ms-vss-method"];
+      console.log(`\t${name}`);
+
       if (!model[area][name]) {
         model[area][name] = [];
       }
