@@ -24,7 +24,7 @@
     <EmbeddedResource Include="operations.json" CopyToOutputDirectory="Always" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JUST.net" Version="4.3.0" />
+    <PackageReference Include="JUST.net" Version="4.4.0" />
     <PackageReference Include="LibGit2Sharp" Version="0.28.0" />
   </ItemGroup>
   <ItemGroup>
